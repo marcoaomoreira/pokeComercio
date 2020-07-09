@@ -8,12 +8,12 @@ export default class  extends Component {
         return (
             <ProductConsumer>
                { value =>{
-                   const {id, name, img, price, inCart}= value.detailProduct;
+                   const {id, name, img, price, inCart, info}= value.detailProduct;
                    return(
                       <div className="container">
                           {/* title */}
                           <div className="row">
-                            <div className="col-10 mx-auto text-center text-slanted text-blue y-5">
+                            <div className="col-10 mx-auto text-center text-slanted text-blue text-capitalize y-5">
                                 <h1>  {name}  </h1>
                             </div>
                           </div>
@@ -31,6 +31,10 @@ export default class  extends Component {
                                         {price}
                                         </strong>
                                     </h4>
+                                    <p className="text-capitalize font-weight-bold mt-3 mb-0">
+                                        Some info about the Pokemon:
+                                                </p>
+                                         <p className="text-muted lead">{info}</p>
                                     {/* buttons */}
                                     <div>
                                         <Link to="/">

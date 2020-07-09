@@ -45,12 +45,13 @@ export default class CartTotals extends Component {
                   <strong>R$ {cartTotal} </strong>
                 </h5>
 
-                <SimpleModal>  
-                {/* {(value) => (<div className="img-container p-5" 
-                                onClick={() => value.handleOpen()
-                                  }> 
-                                  </div>)} */}
-                           
+                <SimpleModal>     
+                
+                      clearCart();
+                   
+                      
+
+                
                 </SimpleModal>
               
                                     {/* <p className="text-capitalize mb-0 card-img-top" disabled>
