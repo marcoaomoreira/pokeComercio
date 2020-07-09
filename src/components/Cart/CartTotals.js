@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { ButtonContainer } from "../Button";
-import PayPalButton from './PayPalButton';
 
 
+function refreshPage() {
+  window.location.reload(false);
+}
 export default class CartTotals extends Component {
   render() {
     const {
@@ -13,8 +14,7 @@ export default class CartTotals extends Component {
       cart,
       clearCart
     } = this.props.value;
-    const { history } = this.props;
-    const emptyCart = cart.length === 0 ? true : false;
+   const emptyCart = cart.length === 0 ? true : false;
     return (
       <React.Fragment>
         {!emptyCart && (
@@ -44,11 +44,14 @@ export default class CartTotals extends Component {
                   <span className="text-title"> total :</span>{" "}
                   <strong>R$ {cartTotal} </strong>
                 </h5>
-                <ButtonContainer
-                  totalAmount={cartTotal}
-                  clearCart={clearCart}
-                  history={history}
-                />
+                <button onClick={refreshPage} className="cart-btn">
+                                    <p className="text-capitalize mb-0 card-img-top" disabled>
+                                        Finalizar Compra
+                                    </p>
+                                    {/* <Example/> */}
+                                    {/* <img src={img} alt="product" className="card-img-top"></img> */}
+                                    
+                                </button> 
                              
                  
                                 
