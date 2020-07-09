@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SimpleModal from './ModalEnd';
 
 
-function refreshPage() {
-  window.location.reload(false);
-}
+
 export default class CartTotals extends Component {
+ 
   render() {
-    const {
+     const {
       cartSubTotal,
       cartTax,
       cartTotal,
@@ -44,14 +44,19 @@ export default class CartTotals extends Component {
                   <span className="text-title"> total :</span>{" "}
                   <strong>R$ {cartTotal} </strong>
                 </h5>
-                <button onClick={refreshPage} className="cart-btn">
-                                    <p className="text-capitalize mb-0 card-img-top" disabled>
-                                        Finalizar Compra
-                                    </p>
-                                    {/* <Example/> */}
-                                    {/* <img src={img} alt="product" className="card-img-top"></img> */}
-                                    
-                                </button> 
+
+                <SimpleModal>  
+                {/* {(value) => (<div className="img-container p-5" 
+                                onClick={() => value.handleOpen()
+                                  }> 
+                                  </div>)} */}
+                           
+                </SimpleModal>
+              
+                                    {/* <p className="text-capitalize mb-0 card-img-top" disabled>
+                                        Finalizar Compra </p>
+                                    </p> </button>  */}
+                                   
                              
                  
                                 
@@ -63,3 +68,9 @@ export default class CartTotals extends Component {
     );
   }
 }
+
+
+
+
+
+

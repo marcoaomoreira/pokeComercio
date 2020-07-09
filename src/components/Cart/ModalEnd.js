@@ -1,72 +1,85 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { ProductConsumer } from "../context";
-import { ButtonContainer } from "./Button";
+import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
 import { Link } from "react-router-dom";
-export default class Modal extends Component {
-  render() {
-    return (
-      <ProductConsumer>
-        {value => {
-          const { modalOpen, closeModal } = value;
-          const { img, title, price } = value.modalProduct;
-          if (!modalOpen) {
-            return null;
-          } else {
-            return (
-              <ModalContainer>
-                <div className="container">
-                  <div className="row">
-                    <div
-                      className="col-8 mx-auto col-md-6 col-lg-4 p-2 text-center text-capitalize"
-                      id="modal"
-                    >
-                      <h5>item added to cart</h5>
-                      <img src={img} className="img-fluid" alt="" />
-                      <h5>{title}</h5>
-                      <h5 className="text-muted">price : R${price}</h5>
-                      <Link to="/">
-                        <ButtonContainer
-                          onClick={() => {
-                            closeModal();
-                          }}
-                        >
-                          Continue Shopping
-                        </ButtonContainer>
-                      </Link>
-                      <Link to="/cart">
-                        <ButtonContainer
-                          cart
-                          onClick={() => {
-                            closeModal();
-                          }}
-                        >
-                          Go To Cart
-                        </ButtonContainer>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </ModalContainer>
-            );
-          }
-        }}
-      </ProductConsumer>
-    );
-  }
+
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
 }
 
-const ModalContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  #modal {
-    background: var(--mainWhite);
-  }
-`;
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
+export default function SimpleModal() {
+  
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+      <h2 id="simple-modal-title">Compra Finalizada</h2>
+      <p id="simple-modal-description">
+        Sua compra foi efetuada com sucesso
+      </p>
+      <React.Fragment>
+        <Link to="/">
+                    <button
+                      className="btn btn-outline-danger text-uppercase mb-3 px-5"
+                      type="button"
+                      onClick={() => {
+                        
+                      }}
+                    >
+                      clear cart
+                    </button>
+        </Link>
+      </React.Fragment>
+    </div>
+  );
+
+  return (
+    <div>
+      <button type="button" onClick={handleOpen}>
+        Finalizar Compra
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {body}
+      </Modal>
+    </div>
+  );
+}
