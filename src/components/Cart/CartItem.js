@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 export default class CartItem extends Component {
   render() {
-    const { id, title, img, price, total, count } = this.props.item;
+    const { id, name, img, price, total, count } = this.props.item;
     const { increment, decrement, removeItem } = this.props.value;
 
     return (
@@ -15,7 +15,7 @@ export default class CartItem extends Component {
           />
         </div>
         <div className="col-10 mx-auto col-lg-2 ">
-          <span className="d-lg-none">product :</span> {title}
+          <span className="d-lg-none">product :</span> {name}
         </div>
         <div className="col-10 mx-auto col-lg-2 ">
           <strong>

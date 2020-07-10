@@ -48,9 +48,9 @@ export default function SimpleModal() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Compra Finalizada</h2>
+      <h2 id="simple-modal-title">Shopping completed!</h2>
       <p id="simple-modal-description">
-        Sua compra foi efetuada com sucesso
+        Thanks for choosing us!
       </p>
       <ProductConsumer>
      {value =>{
@@ -66,7 +66,7 @@ export default function SimpleModal() {
                                            
                       }}
                     >
-                      Obrigado!
+                      Thanks!
                     </button>
         </Link>)}}
       </ProductConsumer>
