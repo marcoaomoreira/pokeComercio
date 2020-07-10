@@ -45,22 +45,10 @@ export default class CartTotals extends Component {
                   <strong>R$ {cartTotal} </strong>
                 </h5>
 
-                <SimpleModal>     
-                
-                      clearCart();
-                   
-                      
-
+                <SimpleModal >   
                 
                 </SimpleModal>
-              
-                                    {/* <p className="text-capitalize mb-0 card-img-top" disabled>
-                                        Finalizar Compra </p>
-                                    </p> </button>  */}
-                                   
                              
-                 
-                                
               </div>
             </div>
           </div>

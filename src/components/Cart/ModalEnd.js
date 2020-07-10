@@ -2,7 +2,8 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Link } from "react-router-dom";
-
+import {ButtonContainer} from '../Button';
+import {ProductConsumer} from '../../context';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -51,27 +52,32 @@ export default function SimpleModal() {
       <p id="simple-modal-description">
         Sua compra foi efetuada com sucesso
       </p>
-      <React.Fragment>
+      <ProductConsumer>
+     {value =>{
+                   // eslint-disable-next-line no-unused-vars
+                   const {clearCart}= value.clearCart;
+                   return(
         <Link to="/">
                     <button
-                      className="btn btn-outline-danger text-uppercase mb-3 px-5"
+                      className="btn btn-success text-uppercase mb-3 px-5"
                       type="button"
-                      onClick={() => {
-                        
+                      onClick={() => { 
+                         value.clearCart();
+                                           
                       }}
                     >
-                      clear cart
+                      Obrigado!
                     </button>
-        </Link>
-      </React.Fragment>
+        </Link>)}}
+      </ProductConsumer>
     </div>
   );
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <ButtonContainer onClick={handleOpen}>
         Finalizar Compra
-      </button>
+      </ButtonContainer>
       <Modal
         open={open}
         onClose={handleClose}
